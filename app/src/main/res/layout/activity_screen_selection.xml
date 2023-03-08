@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScreenSelection"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/date_tv2"
+        style="@style/Movie_diss_mainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="180dp"
+        android:padding="8dp"
+        android:text="Стоимость билета:" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
+                tools:background="@tools:sample/backgrounds/scenic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/image"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Godzilla vs Kong"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Продолжительность 1h 53m"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="Action, Adventure, Fantasy, Science Fiction"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/in_date"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/cardview"-->
+        <!--            android:layout_margin="5dp"-->
+        <!--            android:layout_weight="2"-->
+        <!--            android:background="@drawable/rounded_edittext"-->
+        <!--            android:editable="false"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:textColor="#000" />-->
+
+    <TextView
+
+        android:id="@+id/movie_category"
+        style="@style/Movie_language_data"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="135dp"
+        android:background="@drawable/empty_circle"
+        tools:text="18+" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="335dp"
+        android:layout_marginTop="127dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <Spinner
+        android:id="@+id/timings"
+        android:layout_width="268dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="431dp"
+        android:background="#FF0000"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duration"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="479dp" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/description"
+        android:layout_width="394dp"
+        android:layout_height="244dp"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="143dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        tools:text="Описание" />
+
+    <TextView
+        android:id="@+id/date_tv_data"
+        style="@style/Movie_diss_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="177dp"
+        android:layout_marginTop="130dp"
+
+        android:paddingStart="8dp"
+        android:paddingTop="9dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="10dp"
+        tools:text="7/2/2020" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/Movie_diss_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="231dp"
+        android:layout_marginTop="181dp"
+
+        android:paddingStart="8dp"
+        android:paddingTop="9dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="10dp"
+        tools:text="7/2/2020" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        style="@style/Movie_diss_mainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="130dp"
+        android:padding="8dp"
+        android:text="Дата релиза" />
+
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="75dp"
+        android:layout_marginBottom="77dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:text="Выбрать место"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="140dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="262dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="37dp"
+        android:layout_weight="1"
+        android:background="@color/orange"
+        android:text="Удалить"
+        android:visibility="invisible"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="140dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="254dp"
+        android:layout_marginBottom="38dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:text="Редактировать"
+        android:visibility="invisible"
+        android:textColor="#fff" />
+    <!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_below="@+id/ll1"-->
+<!--        android:id="@+id/cardview1"-->
+<!--        android:layout_height="150dp"-->
+<!--        app:cardElevation="10dp"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        app:cardBackgroundColor="#fff"-->
+<!--        app:cardMaxElevation="12dp"-->
+<!--        app:cardPreventCornerOverlap="true"-->
+<!--        app:cardUseCompatPadding="false">-->
+<!--<RelativeLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:padding="10dp"-->
+<!--    android:gravity="center">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/txt1"-->
+<!--            android:text="SCREEN - 1"-->
+<!--            android:textColor="#000"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"/>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/txt1"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:weightSum="3"-->
+<!--        android:id="@+id/screen11"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/s1_1"-->
+<!--            android:text="11:30 AM"-->
+<!--            android:padding="5dp"-->
+<!--            android:textColor="#000"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/s1_2"-->
+<!--            android:text="01:00 PM"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/s1_3"-->
+<!--            android:text="03:30 PM"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/screen11"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:weightSum="3"-->
+<!--        android:id="@+id/screen12"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="04:10 PM"-->
+<!--            android:id="@+id/s1_4"-->
+<!--            android:padding="5dp"-->
+<!--            android:textColor="#000"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/s1_5"-->
+<!--            android:text="06:30 PM"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/s1_6"-->
+<!--            android:text="11:10 PM"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="5dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="22sp"-->
+<!--            android:background="@drawable/slot_bg"/>-->
+<!--    </LinearLayout>-->
+
+<!--</RelativeLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardview2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_below="@+id/cardview1"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        app:cardBackgroundColor="#fff"-->
+<!--        app:cardElevation="10dp"-->
+<!--        app:cardMaxElevation="12dp"-->
+<!--        app:cardPreventCornerOverlap="true"-->
+<!--        app:cardUseCompatPadding="false">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="10dp">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txt11"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="SCREEN - 2"-->
+<!--                android:textColor="#000"-->
+
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/screen21"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/txt11"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="3">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="11:30 AM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="01:00 PM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="03:30 PM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/screen22"-->
+<!--                android:layout_width="match_parent"-->
+
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/screen21"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="3">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="04:10 PM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="06:30 PM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/s2_6"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/slot_bg"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="11:10 PM"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="22sp" />-->
+<!--            </LinearLayout>-->
+
+
+<!--        </RelativeLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+
+</RelativeLayout>

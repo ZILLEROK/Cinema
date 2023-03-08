@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="Регистрация"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:textColor="#d32f2f"/>
+
+        <EditText
+            android:id="@+id/nameET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Имя"
+            android:maxLength="15"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="#000"
+            android:textColorHint="#000000" />
+
+        <EditText
+            android:id="@+id/emailET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameET"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Email"
+            android:maxLength="15"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="#000"
+            android:textColorHint="#000000" />
+
+
+        <EditText
+            android:id="@+id/mobileET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailET"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="телефон"
+            android:maxLength="15"
+            android:inputType="phone"
+            android:padding="15dp"
+            android:textColor="#000"
+            android:textColorHint="#000000"
+
+            />
+
+        <EditText
+            android:id="@+id/passwordET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mobileET"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Пароль"
+            android:maxLength="15"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="#000"
+            android:textColorHint="#000000" />
+
+        <Button
+            android:id="@+id/registerbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordET"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d32f2f"
+            android:onClick="createUser"
+            android:text="Регистрация"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/login"
+            android:layout_below="@id/registerbtn"
+            android:text="Есть аккаунт? Вход"
+            android:gravity="center"
+            android:textColor="#d32f2f"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+</RelativeLayout>

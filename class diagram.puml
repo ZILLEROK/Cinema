@@ -1,0 +1,389 @@
+@startuml
+class com.flag.cinema.SQLiteHelper {
+~ {static} String DATABASE_NAME
++ {static} String TABLE_NAME
++ {static} String Table_Column_ID
++ {static} String Table_Column_1_Name
++ {static} String Table_Column_2_Email
++ {static} String Table_Column_3_Mobile
++ {static} String Table_Column_4_Password
++ {static} String SEATS_TABLE_NAME
++ {static} String Seats_Table_Column_ID
++ {static} String Seats_Table_Title_Name
++ {static} String Seats_Table_Screen_Name
++ {static} String Seats_Table_Show_Name
++ {static} String Seats_Table_Show_Date
++ {static} String Seats_Table_Seat_Index
++ {static} String Seats_Table_Seat_Name
++ {static} String Seats_Booked_user
++ {static} String Seats_Movie_ID
++ {static} String MOVIE_TABLE_NAME
++ {static} String Movie_ID
++ {static} String Movie_NAME
++ {static} String Movie_img_url
++ {static} String Movie_Type
++ {static} String Movie_trailer
++ {static} String Movie_date_time
++ {static} String Movie_releaseDate
++ {static} String Movie_Length
++ {static} String Movie_category
++ {static} String Movie_Rating
++ {static} String Movie_Description
++ {static} String Movie_Price
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void addRecord(int,String,int,String,String,String,String,String,String,String,String,int,SQLiteDatabase)
+}
+class com.flag.cinema.ScreenSelection {
+~ int image
+~ String title
+- TextView titleText
+- TextView ratingText
+- TextView genreText
+- TextView movie_category
+- TextView descriptionText
+- TextView date_tv_data
+- TextView priceText
+- ImageView imageText
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+- Button btn_date
+- FloatingActionButton play_button
+- String date
+~ Bundle extras
+~ Intent intent
+~ Context c
+# void onCreate(Bundle)
+- void sendData(String)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onClick(View)
+}
+class com.flag.cinema.NumberedAdapter {
+- List<String> labels
++ {static} List<String> seats
++ {static} List<String> seatindex
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.flag.cinema.NumberedAdapter.ViewHolder {
++ TextView textView
+}
+class com.flag.cinema.AutofitRecyclerView {
+- GridLayoutManager manager
+- int columnWidth
+- void init(Context,AttributeSet)
+# void onMeasure(int,int)
+}
+class com.flag.cinema.PaymentActicity {
+~ TextView movieName
+~ EditText cardNumberET
+~ Button payment
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String SQLiteDataBaseQueryHolder
+~ Bundle extras
+~ Intent intent
+~ SQLiteHelper database_helper
+~ Movie movie
+~ int m_id
++ {static} String mypreference
++ {static} String Email
++ {static} String seatsIndex
+~ String title
+# void onCreate(Bundle)
++ void InsertDataIntoSQLiteDatabase(String,String,String,String,String,int)
++ void SQLiteDataBaseBuild()
++ void SQLiteTableBuild()
++ void validation()
++ void prepareMovie(int)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onBackPressed()
+}
+class com.flag.cinema.LoginActivity {
+- EditText email
+~ String EmailHolder
+~ Boolean EditTextEmptyHolder
+~ SQLiteDatabase sqLiteDatabaseObj
+~ SQLiteHelper sqLiteHelper
+~ Cursor cursor
+~ String TempPassword
++ {static} String UserEmail
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
++ void Login()
++ void CheckEditTextStatus()
++ void CheckFinalResult()
++ void onBackPressed()
+}
+class com.flag.cinema.SplashScreen {
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
+}
+class com.flag.cinema.HomeActivity {
+- RecyclerView recyclerView
+- RecyclerViewAdapter recyclerViewAdapter
+- ArrayList<Movie> movieList
++ {static} String id_movie
++ {static} String imageIntent
++ {static} String titleIntent
++ {static} String ratingIntent
++ {static} String runtimeIntent
++ {static} String genreIntent
++ {static} String dateIntent
++ {static} String trailerIntent
++ {static} String categoryIntent
++ {static} String relaseIntent
++ {static} String descriptionIntent
++ {static} String priceIntent
+~ Context context
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+# void onCreate(Bundle)
+- void prepareMovie()
++ void onBackPressed()
+}
+class com.flag.cinema.RecyclerBookAdapter {
+- List<Bookings> bookList
+- ClickListener1<Bookings> clickListener1
+~ Context context
++ RecyclerBookAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
++ void setOnItemClickListener(ClickListener1<Bookings>)
+}
+class com.flag.cinema.RecyclerBookAdapter.MyViewHolder {
+- TextView screendetails
+- TextView seats
+- TextView title
+- ImageView image
+- CardView cardView
+}
+interface com.flag.cinema.ClickListener1 {
+~ void onItemClick(T)
+}
+class com.flag.cinema.EditMovie {
+~ EditText name
+~ String name1
+~ Button btn_send
+~ Bundle extras
+~ Intent intent
+~ SQLiteHelper dbHelper
+~ int m_id
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onBackPressed()
+}
+class com.flag.cinema.SeatSelection {
+~ Button bookseats
++ {static} String title
++ {static} int id_movie
+~ SQLiteDatabase sqLiteDatabaseObj
+~ SQLiteHelper sqLiteHelper
+~ Cursor cursor
+~ String s
++ {static} List<String> bookedSeats
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ String currentUser
+# void onCreate(Bundle)
+- void selectData()
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
+}
+class com.flag.cinema.Movie {
+- String name
+~ int imgUrl
++ String getDescription()
++ void setDescription(String)
++ int getPrice()
++ void setPrice(int)
++ int getId()
++ void setId(int)
++ String getDate_time()
++ void setDate_time(String)
++ void setName(String)
++ void setType(String)
++ void setLength(String)
++ void setCategory(String)
++ void setRating(String)
++ void setTrile(String)
++ void setRelaDate(String)
++ String getRating()
++ int getImgUrl()
++ void setImgUrl(int)
++ String getLength()
++ String getCategory()
++ String getName()
++ String getType()
++ String getTrile()
++ String getRelaDate()
+}
+class com.flag.cinema.TicketActivity {
+~ Movie movie
+~ int image
+~ String title
+- TextView titleText
+- TextView ratingText
+- TextView genreText
+- TextView descriptionText
+- TextView movie_category
+- TextView number_Text
+- TextView timeText
+- TextView priceText
+- TextView seatText
+- TextView date_tv_data
+- TextView userview
+- TextView user1
+- TextView duration
+- ImageView imageText
+- Button btn_del
+- FloatingActionButton play_button
+~ SQLiteHelper database_helper
+~ SharedPreferences sharedpreferences
+~ SQLiteDatabase sqLiteDatabaseObj
+~ Bundle extras
+~ Intent intent
+~ Context c
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
+- void prepareMovie(int)
+- void deleteBook(int)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onClick(View)
++ void onDelete()
+}
+class com.flag.cinema.Bookings {
+- int id
+- String title
+- String date
+- String seats
+- String user
+- int movie_id
++ int getMovie_id()
++ void setMovie_id(int)
++ String getUser()
++ void setUser(String)
++ int getId()
++ void setId(int)
++ String getTitle()
++ void setTitle(String)
++ String getDate()
++ void setDate(String)
++ String getSeats()
++ void setSeats(String)
+}
+class com.flag.cinema.BookingsActivity {
+- RecyclerView recyclerView
+- RecyclerBookAdapter recyclerBookAdapter
+- ArrayList<Bookings> bookList
++ {static} String id_movie
++ {static} String id_book
++ {static} String title
++ {static} String date
++ {static} String seat
++ {static} String user
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String currentUser
+# void onCreate(Bundle)
++ void prepareBook()
++ void prepareBookAdmin()
++ void onBackPressed()
+}
+class com.flag.cinema.RecyclerViewAdapter {
+- List<Movie> movieList
+- ClickListener<Movie> clickListener
+~ Context context
++ RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(RecyclerViewAdapter.MyViewHolder,int)
++ int getItemCount()
++ void setOnItemClickListener(ClickListener<Movie>)
+}
+class com.flag.cinema.RecyclerViewAdapter.MyViewHolder {
+- TextView title
+- TextView rating
+- TextView genre
+- ImageView image
+- CardView cardView
+}
+interface com.flag.cinema.ClickListener {
+~ void onItemClick(T)
+}
+class com.flag.cinema.ProfileActivity {
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ TextView emailTxt
+~ String emailVal
+~ String mobileVal
+~ String nameVal
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+~ Button logoutBtn
+# void onCreate(Bundle)
++ void getProfile()
++ void onBackPressed()
+}
+class com.flag.cinema.RegisterActivity {
+- EditText name
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String SQLiteDataBaseQueryHolder
+~ SQLiteHelper sqLiteHelper
+~ Boolean EditTextEmptyHolder
+~ String NameHolder
+~ String F_Result
+~ Cursor cursor
+# void onCreate(Bundle)
++ void SQLiteDataBaseBuild()
++ void SQLiteTableBuild()
++ void InsertDataIntoSQLiteDatabase()
++ void EmptyEditTextAfterDataInsert()
++ void CheckEditTextStatus()
++ void CheckingEmailAlreadyExistsOrNot()
++ void CheckFinalResult()
++ void onBackPressed()
+}
+
+
+android.database.sqlite.SQLiteOpenHelper <|-- com.flag.cinema.SQLiteHelper
+com.flag.cinema.OnClickListener <|.. com.flag.cinema.ScreenSelection
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.ScreenSelection
+com.flag.cinema.Adapter <|-- com.flag.cinema.NumberedAdapter
+com.flag.cinema.NumberedAdapter +.. com.flag.cinema.NumberedAdapter.ViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.NumberedAdapter.ViewHolder
+androidx.recyclerview.widget.RecyclerView <|-- com.flag.cinema.AutofitRecyclerView
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.PaymentActicity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.LoginActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.SplashScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.HomeActivity
+com.flag.cinema.Adapter <|-- com.flag.cinema.RecyclerBookAdapter
+com.flag.cinema.RecyclerBookAdapter +.. com.flag.cinema.RecyclerBookAdapter.MyViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.RecyclerBookAdapter.MyViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.EditMovie
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.SeatSelection
+java.io.Serializable <|.. com.flag.cinema.Movie
+com.flag.cinema.OnClickListener <|.. com.flag.cinema.TicketActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.TicketActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.BookingsActivity
+com.flag.cinema.Adapter <|-- com.flag.cinema.RecyclerViewAdapter
+com.flag.cinema.RecyclerViewAdapter +.. com.flag.cinema.RecyclerViewAdapter.MyViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.RecyclerViewAdapter.MyViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.ProfileActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.RegisterActivity
+@enduml

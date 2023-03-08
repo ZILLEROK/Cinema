@@ -1,0 +1,69 @@
+@startuml
+class com.flag.cinema.TicketActivity {
+~ Movie movie
+~ int image
+~ String title
+- TextView titleText
+- TextView ratingText
+- TextView genreText
+- TextView descriptionText
+- TextView movie_category
+- TextView number_Text
+- TextView timeText
+- TextView priceText
+- TextView seatText
+- TextView date_tv_data
+- TextView userview
+- TextView user1
+- TextView duration
+- ImageView imageText
+- Button btn_del
+- FloatingActionButton play_button
+~ SQLiteHelper database_helper
+~ SharedPreferences sharedpreferences
+~ SQLiteDatabase sqLiteDatabaseObj
+~ Bundle extras
+~ Intent intent
+~ Context c
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
+- void prepareMovie(int)
+- void deleteBook(int)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onClick(View)
++ void onDelete()
+}
+class com.flag.cinema.ScreenSelection {
+~ int image
+~ String title
+- TextView titleText
+- TextView ratingText
+- TextView genreText
+- TextView movie_category
+- TextView descriptionText
+- TextView date_tv_data
+- TextView priceText
+- ImageView imageText
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+- Button btn_date
+- FloatingActionButton play_button
+- String date
+~ Bundle extras
+~ Intent intent
+~ Context c
+# void onCreate(Bundle)
+- void sendData(String)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onClick(View)
+}
+
+
+com.flag.cinema.OnClickListener <|.. com.flag.cinema.TicketActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.TicketActivity
+com.flag.cinema.OnClickListener <|.. com.flag.cinema.ScreenSelection
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.ScreenSelection
+@enduml

@@ -1,0 +1,174 @@
+@startuml
+class com.flag.cinema.BookingsActivity {
+- RecyclerView recyclerView
+- RecyclerBookAdapter recyclerBookAdapter
+- ArrayList<Bookings> bookList
++ {static} String id_movie
++ {static} String id_book
++ {static} String title
++ {static} String date
++ {static} String seat
++ {static} String user
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String currentUser
+# void onCreate(Bundle)
++ void prepareBook()
++ void prepareBookAdmin()
++ void onBackPressed()
+}
+class com.flag.cinema.PaymentActicity {
+~ TextView movieName
+~ EditText cardNumberET
+~ Button payment
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String SQLiteDataBaseQueryHolder
+~ Bundle extras
+~ Intent intent
+~ SQLiteHelper database_helper
+~ Movie movie
+~ int m_id
++ {static} String mypreference
++ {static} String Email
++ {static} String seatsIndex
+~ String title
+# void onCreate(Bundle)
++ void InsertDataIntoSQLiteDatabase(String,String,String,String,String,int)
++ void SQLiteDataBaseBuild()
++ void SQLiteTableBuild()
++ void validation()
++ void prepareMovie(int)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onBackPressed()
+}
+class com.flag.cinema.ProfileActivity {
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ TextView emailTxt
+~ String emailVal
+~ String mobileVal
+~ String nameVal
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+~ Button logoutBtn
+# void onCreate(Bundle)
++ void getProfile()
++ void onBackPressed()
+}
+class com.flag.cinema.LoginActivity {
+- EditText email
+~ String EmailHolder
+~ Boolean EditTextEmptyHolder
+~ SQLiteDatabase sqLiteDatabaseObj
+~ SQLiteHelper sqLiteHelper
+~ Cursor cursor
+~ String TempPassword
++ {static} String UserEmail
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
++ void Login()
++ void CheckEditTextStatus()
++ void CheckFinalResult()
++ void onBackPressed()
+}
+class com.flag.cinema.SplashScreen {
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+# void onCreate(Bundle)
+}
+class com.flag.cinema.EditMovie {
+~ EditText name
+~ String name1
+~ Button btn_send
+~ Bundle extras
+~ Intent intent
+~ SQLiteHelper dbHelper
+~ int m_id
+# void onCreate(Bundle)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
++ void onBackPressed()
+}
+class com.flag.cinema.HomeActivity {
+- RecyclerView recyclerView
+- RecyclerViewAdapter recyclerViewAdapter
+- ArrayList<Movie> movieList
++ {static} String id_movie
++ {static} String imageIntent
++ {static} String titleIntent
++ {static} String ratingIntent
++ {static} String runtimeIntent
++ {static} String genreIntent
++ {static} String dateIntent
++ {static} String trailerIntent
++ {static} String categoryIntent
++ {static} String relaseIntent
++ {static} String descriptionIntent
++ {static} String priceIntent
+~ Context context
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ SQLiteHelper database_helper
+~ SQLiteDatabase sqLiteDatabaseObj
+# void onCreate(Bundle)
+- void prepareMovie()
++ void onBackPressed()
+}
+class com.flag.cinema.SeatSelection {
+~ Button bookseats
++ {static} String title
++ {static} int id_movie
+~ SQLiteDatabase sqLiteDatabaseObj
+~ SQLiteHelper sqLiteHelper
+~ Cursor cursor
+~ String s
++ {static} List<String> bookedSeats
+~ SharedPreferences sharedpreferences
++ {static} String mypreference
++ {static} String Email
+~ String currentUser
+# void onCreate(Bundle)
+- void selectData()
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onCreateOptionsMenu(Menu)
+}
+class com.flag.cinema.RegisterActivity {
+- EditText name
+~ SQLiteDatabase sqLiteDatabaseObj
+~ String SQLiteDataBaseQueryHolder
+~ SQLiteHelper sqLiteHelper
+~ Boolean EditTextEmptyHolder
+~ String NameHolder
+~ String F_Result
+~ Cursor cursor
+# void onCreate(Bundle)
++ void SQLiteDataBaseBuild()
++ void SQLiteTableBuild()
++ void InsertDataIntoSQLiteDatabase()
++ void EmptyEditTextAfterDataInsert()
++ void CheckEditTextStatus()
++ void CheckingEmailAlreadyExistsOrNot()
++ void CheckFinalResult()
++ void onBackPressed()
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.BookingsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.PaymentActicity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.ProfileActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.LoginActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.SplashScreen
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.EditMovie
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.HomeActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.SeatSelection
+androidx.appcompat.app.AppCompatActivity <|-- com.flag.cinema.RegisterActivity
+@enduml

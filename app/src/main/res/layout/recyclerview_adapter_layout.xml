@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carView"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="90dp"
+    cardView:cardCornerRadius="8dp"
+    cardView:cardElevation="8dp"
+    android:layout_margin="8dp">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        android:background="#000000"
+        android:src="@drawable/ticket"
+        cardView:layout_constraintStart_toStartOf="parent"
+        cardView:layout_constraintTop_toTopOf="parent"
+         />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/image">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Godzilla vs Kong"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="PG-13 | 1h 53m"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Action, Adventure, Fantasy, Science Fiction"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:paddingLeft="10dp"/>
+
+        </LinearLayout>
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>

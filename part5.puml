@@ -1,0 +1,40 @@
+@startuml
+class com.flag.cinema.SQLiteHelper {
+~ {static} String DATABASE_NAME
++ {static} String TABLE_NAME
++ {static} String Table_Column_ID
++ {static} String Table_Column_1_Name
++ {static} String Table_Column_2_Email
++ {static} String Table_Column_3_Mobile
++ {static} String Table_Column_4_Password
++ {static} String SEATS_TABLE_NAME
++ {static} String Seats_Table_Column_ID
++ {static} String Seats_Table_Title_Name
++ {static} String Seats_Table_Screen_Name
++ {static} String Seats_Table_Show_Name
++ {static} String Seats_Table_Show_Date
++ {static} String Seats_Table_Seat_Index
++ {static} String Seats_Table_Seat_Name
++ {static} String Seats_Booked_user
++ {static} String Seats_Movie_ID
++ {static} String MOVIE_TABLE_NAME
++ {static} String Movie_ID
++ {static} String Movie_NAME
++ {static} String Movie_img_url
++ {static} String Movie_Type
++ {static} String Movie_trailer
++ {static} String Movie_date_time
++ {static} String Movie_releaseDate
++ {static} String Movie_Length
++ {static} String Movie_category
++ {static} String Movie_Rating
++ {static} String Movie_Description
++ {static} String Movie_Price
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void addRecord(int,String,int,String,String,String,String,String,String,String,String,int,SQLiteDatabase)
+}
+
+
+android.database.sqlite.SQLiteOpenHelper <|-- com.flag.cinema.SQLiteHelper
+@enduml

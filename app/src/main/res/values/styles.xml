@@ -1,0 +1,52 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#FF0000</item>
+    </style>
+
+    <style name="MainTitle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="description">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#CDACA7A7</item>
+    </style>
+    <style name="Movie_diss_mainTitle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="Movie_diss_data">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#F0E13434</item>
+    </style>
+    <style name="Movie_language_data">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="Movie_time_data">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="alertDialogStyle">@color/colorPrimaryDark</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+</resources>

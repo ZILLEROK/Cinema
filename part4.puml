@@ -1,0 +1,60 @@
+@startuml
+class com.flag.cinema.Bookings {
+- int id
+- String title
+- String date
+- String seats
+- String user
+- int movie_id
++ int getMovie_id()
++ void setMovie_id(int)
++ String getUser()
++ void setUser(String)
++ int getId()
++ void setId(int)
++ String getTitle()
++ void setTitle(String)
++ String getDate()
++ void setDate(String)
++ String getSeats()
++ void setSeats(String)
+}
+class com.flag.cinema.AutofitRecyclerView {
+- GridLayoutManager manager
+- int columnWidth
+- void init(Context,AttributeSet)
+# void onMeasure(int,int)
+}
+class com.flag.cinema.Movie {
+- String name
+~ int imgUrl
++ String getDescription()
++ void setDescription(String)
++ int getPrice()
++ void setPrice(int)
++ int getId()
++ void setId(int)
++ String getDate_time()
++ void setDate_time(String)
++ void setName(String)
++ void setType(String)
++ void setLength(String)
++ void setCategory(String)
++ void setRating(String)
++ void setTrile(String)
++ void setRelaDate(String)
++ String getRating()
++ int getImgUrl()
++ void setImgUrl(int)
++ String getLength()
++ String getCategory()
++ String getName()
++ String getType()
++ String getTrile()
++ String getRelaDate()
+}
+
+
+androidx.recyclerview.widget.RecyclerView <|-- com.flag.cinema.AutofitRecyclerView
+java.io.Serializable <|.. com.flag.cinema.Movie
+@enduml

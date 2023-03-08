@@ -1,0 +1,13 @@
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/seat_selector"
+        android:gravity="center"
+        android:text=""
+        android:padding="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+

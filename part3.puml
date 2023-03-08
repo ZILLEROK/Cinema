@@ -1,0 +1,62 @@
+@startuml
+class com.flag.cinema.RecyclerViewAdapter {
+- List<Movie> movieList
+- ClickListener<Movie> clickListener
+~ Context context
++ RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(RecyclerViewAdapter.MyViewHolder,int)
++ int getItemCount()
++ void setOnItemClickListener(ClickListener<Movie>)
+}
+class com.flag.cinema.RecyclerViewAdapter.MyViewHolder {
+- TextView title
+- TextView rating
+- TextView genre
+- ImageView image
+- CardView cardView
+}
+interface com.flag.cinema.ClickListener {
+~ void onItemClick(T)
+}
+class com.flag.cinema.NumberedAdapter {
+- List<String> labels
++ {static} List<String> seats
++ {static} List<String> seatindex
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.flag.cinema.NumberedAdapter.ViewHolder {
++ TextView textView
+}
+class com.flag.cinema.RecyclerBookAdapter {
+- List<Bookings> bookList
+- ClickListener1<Bookings> clickListener1
+~ Context context
++ RecyclerBookAdapter.MyViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(MyViewHolder,int)
++ int getItemCount()
++ void setOnItemClickListener(ClickListener1<Bookings>)
+}
+class com.flag.cinema.RecyclerBookAdapter.MyViewHolder {
+- TextView screendetails
+- TextView seats
+- TextView title
+- ImageView image
+- CardView cardView
+}
+interface com.flag.cinema.ClickListener1 {
+~ void onItemClick(T)
+}
+
+
+com.flag.cinema.Adapter <|-- com.flag.cinema.RecyclerViewAdapter
+com.flag.cinema.RecyclerViewAdapter +.. com.flag.cinema.RecyclerViewAdapter.MyViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.RecyclerViewAdapter.MyViewHolder
+com.flag.cinema.Adapter <|-- com.flag.cinema.NumberedAdapter
+com.flag.cinema.NumberedAdapter +.. com.flag.cinema.NumberedAdapter.ViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.NumberedAdapter.ViewHolder
+com.flag.cinema.Adapter <|-- com.flag.cinema.RecyclerBookAdapter
+com.flag.cinema.RecyclerBookAdapter +.. com.flag.cinema.RecyclerBookAdapter.MyViewHolder
+com.flag.cinema.ViewHolder <|-- com.flag.cinema.RecyclerBookAdapter.MyViewHolder
+@enduml

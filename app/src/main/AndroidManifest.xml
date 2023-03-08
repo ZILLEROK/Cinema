@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.flag.cinema">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.flag.cinema.PaymentActicity" android:exported="true"/>
+        <activity android:name="com.flag.cinema.ProfileActivity" android:exported="true"/>
+        <activity android:name="com.flag.cinema.BookingsActivity" android:exported="true"/>
+        <activity android:name="com.flag.cinema.ScreenSelection" android:exported="true"/>
+        <activity android:name="com.flag.cinema.HomeActivity" android:exported="true"/>
+        <activity
+            android:name="com.flag.cinema.SeatSelection"
+            android:label="Seat Selection" android:exported="true"/>
+        <activity android:name="com.flag.cinema.LoginActivity" android:exported="true"/>
+        <activity android:name="com.flag.cinema.RegisterActivity" android:exported="true"/>
+<!--        <activity android:name="com.flag.cinema.MainActivity" />-->
+        <activity android:name="com.flag.cinema.TicketActivity"
+            android:exported="true"/>
+        <activity android:name="com.flag.cinema.MovieRedact"
+            android:exported="true"/>
+        <activity android:name="com.flag.cinema.SplashScreen"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

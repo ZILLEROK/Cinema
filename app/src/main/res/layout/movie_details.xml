@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/movie_img_detail"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+         />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Информация о фильме"
+        app:titleTextColor="#FFF" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@id/movie_img_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/movie_img_detail"
+        app:srcCompat="@android:drawable/ic_media_play"
+        android:focusable="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/movie_img_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/details_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            tools:text="Wonder woman" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+
+                android:id="@+id/movie_category"
+                style="@style/Movie_language_data"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/empty_circle"
+                tools:text="18+" />
+
+            <TextView
+                android:id="@+id/movie_language"
+                style="@style/Movie_language_data"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                tools:text="Продолжительность" />
+
+            <TextView
+                android:id="@+id/movie_length"
+                style="@style/Movie_language_data"
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                tools:text="120 min" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_img_detail">
+
+        <TextView
+            android:id="@+id/genre_tv"
+            style="@style/Movie_diss_mainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:text="Жанр" />
+
+        <TextView
+            android:id="@+id/genre_tv_data"
+            style="@style/Movie_diss_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/genre_tv"
+            android:layout_gravity="bottom"
+            android:layout_toEndOf="@id/genre_tv"
+            android:padding="8dp"
+            tools:text="Action" />
+
+
+        <TextView
+            android:id="@+id/date_tv_data"
+            style="@style/Movie_diss_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genre_tv"
+            android:layout_alignBottom="@id/date_tv"
+            android:layout_toEndOf="@id/date_tv"
+
+            android:paddingStart="8dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="10dp"
+
+            tools:text="7/2/2020" />
+
+        <TextView
+            android:id="@+id/date_tv"
+            style="@style/Movie_diss_mainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genre_tv"
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:text="Дата релиза" />
+
+        <!--        <TextView-->
+<!--            android:id="@+id/display_at"-->
+<!--            style="@style/Movie_diss_mainTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/date_tv"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:text="@string/display_at"-->
+<!--            android:textAlignment="center" />-->
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/add"
+        style="@style/MainTitle"
+        android:layout_width="275dp"
+        android:layout_height="47dp"
+        android:background="@color/colorPrimary"
+        android:text="Забронировать"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="613dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
