@@ -75,7 +75,7 @@ public class SeatSelection extends AppCompatActivity {
         showDate = extras.getString("date");
         NumberedAdapter.seats = new ArrayList<>();
 
-//        NumberedAdapter.bookedSeats.clear();
+       NumberedAdapter.bookedSeats.clear();
 //        sqLiteHelper = new SQLiteHelper(this);
 //        sqLiteDatabaseObj = sqLiteHelper.getWritableDatabase();
 //        cursor = sqLiteDatabaseObj.query(SQLiteHelper.SEATS_TABLE_NAME, null, " "  + SQLiteHelper.Seats_Table_Title_Name + " = ? AND "  + SQLiteHelper.Seats_Table_Show_Date + " = ? ", new String[]{SeatSelection.title,SeatSelection.showDate}, null, null, null);
@@ -88,8 +88,11 @@ public class SeatSelection extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Iterable<DataSnapshot> snapshotIterator = snapshot.getChildren();
                 for (DataSnapshot snapshotIter : snapshotIterator){
-                    NumberedAdapter.bookedSeats.add(snapshotIter.child("seat_index").getValue().toString().trim());
-                }
+                    if(snapshotIter.child("date").getValue().toString().equals(extras.getString("date"))&&
+                            snapshotIter.child("title").getValue().toString().equals(extras.getString("title"))) {
+                        NumberedAdapter.bookedSeats.add(snapshotIter.child("seat_index").getValue().toString().trim());
+
+                    }}
 //                for(int i=0;i<NumberedAdapter.bookedSeats.size();i++)
 //                {
 //                    if(NumberedAdapter.position==(Integer.parseInt(NumberedAdapter.bookedSeats.get(i).trim()))){
