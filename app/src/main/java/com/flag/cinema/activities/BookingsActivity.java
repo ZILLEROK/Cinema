@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flag.cinema.models.Bookings;
+import com.flag.cinema.adapters.ClickListener1;
+import com.flag.cinema.R;
+import com.flag.cinema.adapters.RecyclerBookAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +45,7 @@ public class BookingsActivity extends AppCompatActivity{
     SharedPreferences sharedpreferences;
     public static final String mypreference = "mypref";
     public static final String Email = "emailKey";
-    SQLiteHelper database_helper;
+
 
     SQLiteDatabase sqLiteDatabaseObj;
     String currentUser="";
@@ -51,7 +55,6 @@ public class BookingsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookings);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d32f2f")));
-        database_helper = new SQLiteHelper(this);
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -60,14 +63,14 @@ public class BookingsActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent a = new Intent(BookingsActivity.this,HomeActivity.class);
+                        Intent a = new Intent(BookingsActivity.this, HomeActivity.class);
                         startActivity(a);
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         break;
                     case R.id.navigation_dashboard:
                         break;
                     case R.id.navigation_notifications:
-                        Intent b = new Intent(BookingsActivity.this,ProfileActivity.class);
+                        Intent b = new Intent(BookingsActivity.this, ProfileActivity.class);
                         startActivity(b);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
@@ -81,24 +84,32 @@ public class BookingsActivity extends AppCompatActivity{
         sharedpreferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         currentUser = sharedpreferences.getString(Email, "");
         bookList = new ArrayList<>();
-//        if(currentUser.equals("admin@mail.ru")){
-//            AdminPrepareBook();
-//        }
-//        else{
-//        prepareBook();}
+
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerBookAdapter = new RecyclerBookAdapter(bookList);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
+
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDbRef = mDatabase.getReference();
+
         mDbRef.child("bookings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Iterable<DataSnapshot> snapshotIterator = snapshot.getChildren();
 
                 for (DataSnapshot snapshotIter : snapshotIterator){
-                    if(snapshotIter.child("user").getValue().toString().equals(currentUser)){
+                    if(currentUser.equals("admin@mail.ru")){
+                        //adds every child attributes to an array list called flightList without filtering
+                        Bookings bookings = new Bookings(snapshotIter.child("id").getValue().toString()
+                                ,snapshotIter.child("title").getValue().toString()
+                                ,snapshotIter.child("date").getValue().toString()
+                                ,snapshotIter.child("seats").getValue().toString()
+                                ,snapshotIter.child("user").getValue().toString()
+                                ,snapshotIter.child("seat_index").getValue().toString()
+                                ,Integer.parseInt(snapshotIter.child("movie_id").getValue().toString()));
+//
+                        //Toast.makeText(HomeActivity.this,Integer.parseInt(snapshotIter.child("imgUrl").getValue().toString().toString()),Toast.LENGTH_LONG).show();
+                        bookList.add(bookings);}
+                    else if(snapshotIter.child("user").getValue().toString().equals(currentUser) && !currentUser.equals("admin@mail.ru")){
                     //adds every child attributes to an array list called flightList without filtering
                     Bookings bookings = new Bookings(snapshotIter.child("id").getValue().toString()
                             ,snapshotIter.child("title").getValue().toString()
@@ -108,7 +119,7 @@ public class BookingsActivity extends AppCompatActivity{
                             ,snapshotIter.child("seat_index").getValue().toString()
                             ,Integer.parseInt(snapshotIter.child("movie_id").getValue().toString()));
 //
-                    //Toast.makeText(HomeActivity.this,Integer.parseInt(snapshotIter.child("imgUrl").getValue().toString().toString()),Toast.LENGTH_LONG).show();
+
                     bookList.add(bookings);}
                 }
 
@@ -153,68 +164,10 @@ public class BookingsActivity extends AppCompatActivity{
 
         });
 
-//        recyclerBookAdapter.setOnItemClickListener(new ClickListener1<Bookings>(){
-//            @Override
-//            public void onItemClick(Bookings data) {
-//
-//                Intent intent = new Intent(BookingsActivity.this, TicketActivity.class);
-//                Bundle extras = new Bundle();
-//                extras.putInt(id_movie, data.getMovie_id());
-//                extras.putString(id_book, data.getId());
-//                extras.putString(title,data.getTitle());
-//                extras.putString(date,data.getDate());
-//                extras.putString(seat, data.getSeats());
-//                extras.putString(user,data.getUser());
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//
-//            }
-//        });
-//
-//        recyclerView.setAdapter(recyclerBookAdapter);
+
     }
 
-//    public void prepareBook(){
-//        String group_by_clause="GROUP by  s_id,title_name,show_date,seats_booked_user, seat_name, movie_id";
-//        String select_query= "SELECT s_id,title_name,show_date,seats_booked_user,seat_name,movie_id FROM  SeatsTable where seats_booked_user = '" + "" +currentUser+ "" + "' "+group_by_clause;
-//
-//        sqLiteDatabaseObj = database_helper.getWritableDatabase();
-//        Cursor cursor = sqLiteDatabaseObj.rawQuery(select_query,null);
-//        if (cursor.moveToFirst()) {
-//            do {
-//                Bookings bookings = new Bookings();
-//                bookings.setId(cursor.getInt(0));
-//                bookings.setTitle(cursor.getString(1));
-//                bookings.setDate(cursor.getString(2));
-//                bookings.setUser(cursor.getString(3));
-//                bookings.setSeats(cursor.getString(4));
-//                bookings.setMovie_id(cursor.getInt(5));
-//                bookList.add(bookings);
-//            }while (cursor.moveToNext());
-//        }
-//
-//    }
-//    public void AdminPrepareBook(){
-//
-//        String select_query= "SELECT s_id,title_name,show_date,seats_booked_user,seat_name,movie_id FROM  SeatsTable";
-//
-//        sqLiteDatabaseObj = database_helper.getWritableDatabase();
-//        Cursor cursor = sqLiteDatabaseObj.rawQuery(select_query,null);
-//        if (cursor.moveToFirst()) {
-//            do {
-//                Bookings bookings = new Bookings();
-//                bookings.setId(cursor.getInt(0));
-//                bookings.setTitle(cursor.getString(1));
-//                bookings.setDate(cursor.getString(2));
-//                bookings.setUser(cursor.getString(3));
-//                bookings.setSeats(cursor.getString(4));
-//                bookings.setMovie_id(cursor.getInt(5));
-//                bookList.add(bookings);
-//            }while (cursor.moveToNext());
-//        }
-//
-//    }
+
 
     @Override
     public void onBackPressed() {

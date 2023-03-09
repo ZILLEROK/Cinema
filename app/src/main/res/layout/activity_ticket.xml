@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TicketActivity"
+    tools:context=".activities.TicketActivity"
     android:background="#fff">
 
 
@@ -212,7 +212,7 @@
         android:layout_marginTop="127dp"
         android:clickable="true"
         android:focusable="true"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
@@ -334,7 +334,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginBottom="38dp"
         android:layout_weight="1"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:text="Отменить билет"
         android:textColor="#fff" />
     <!--    <androidx.cardview.widget.CardView-->

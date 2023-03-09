@@ -62,7 +62,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="60sp"
             android:text="0 рублей"/>
 
@@ -222,7 +222,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#d32f2f"
+            android:background="#000000"
             android:text="Оплатить"
             android:textColor="#fff"
             android:textStyle="bold" />

@@ -11,13 +11,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProfileActivity">
+        tools:context=".activities.ProfileActivity">
 
         <RelativeLayout
             android:id="@+id/rellay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:paddingBottom="20dp">
 
             <RelativeLayout
@@ -28,14 +28,17 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circle_border">
 
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="9dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/circle"
-                    android:padding="3dp"
-                    android:src="@drawable/profile_pic" />
+<!--                <ImageView-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="120dp"-->
+<!--                    android:layout_marginStart="9dp"-->
+<!--                    android:layout_marginTop="9dp"-->
+<!--                    android:layout_marginEnd="9dp"-->
+<!--                    android:layout_marginBottom="9dp"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:background="@drawable/circle"-->
+<!--                    android:padding="3dp"-->
+<!--                    android:src="@drawable/profile_pic" />-->
 
             </RelativeLayout>
 
@@ -107,7 +110,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="joey@sharenofood.com"
                         android:id="@+id/tv_email"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="18sp" />
 
                     <View
@@ -137,7 +140,7 @@
                         android:fontFamily="sans-serif-light"
                         android:id="@+id/tv_phone"
                         android:text="+1-202-555-0157"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="18sp" />
 
                     <View
@@ -159,10 +162,20 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="20dp"
-                      android:background="@color/colorPrimary"
+                      android:background="@color/colorPrimaryDark"
                       android:textColor="#fff"
                       android:id="@+id/logoutBtn"
                       android:text="ВЫХОД"/>
+
+                    <Button
+                        android:id="@+id/addfilm"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="ДОБАВИТЬ ФИЛЬМЫ"
+                        android:textColor="#fff" />
 
                 </LinearLayout>
 
@@ -178,7 +191,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         app:itemIconTint="@drawable/tab_color"
         app:itemTextColor="@drawable/tab_color"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,7 +1,8 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flag.cinema.R;
+import com.flag.cinema.models.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,25 +35,28 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText name,email,mobile,password;
     SQLiteDatabase sqLiteDatabaseObj;
     String SQLiteDataBaseQueryHolder ;
-    SQLiteHelper sqLiteHelper;
+
     Boolean EditTextEmptyHolder;
     String NameHolder, EmailHolder, MobileHolder, PasswordHolder;
     String F_Result = "Not_Found";
     Cursor cursor;
-
+    SharedPreferences sharedpreferences;
+    public static final String mypreference = "mypref";
+    public static final String Phone = "phoneKey";
+    public static final String UserName = "nameKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d32f2f")));
 
-
+        sharedpreferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         TextView login = (TextView)findViewById(R.id.login);
         mAuth = FirebaseAuth.getInstance();
 
 
         Button registerBtn = (Button)findViewById(R.id.registerbtn);
-        sqLiteHelper = new SQLiteHelper(this);
+
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +83,10 @@ public class RegisterActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email1,password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString(Phone, mobile.getText().toString());
+                            editor.putString(UserName, name.getText().toString());
+                            editor.commit();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Users userInfo = new Users(name.getText().toString(),email.getText().toString(),password.getText().toString(),mobile.getText().toString());
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -112,34 +121,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(in);
+                EmptyEditTextAfterDataInsert();
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
     }
-    public void SQLiteDataBaseBuild(){
-        sqLiteDatabaseObj = openOrCreateDatabase(SQLiteHelper.DATABASE_NAME, Context.MODE_PRIVATE, null);
-    }
-    public void SQLiteTableBuild() {
-        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + SQLiteHelper.TABLE_NAME + "(" + SQLiteHelper.Table_Column_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + SQLiteHelper.Table_Column_1_Name + " VARCHAR, " + SQLiteHelper.Table_Column_2_Email + " VARCHAR, " + SQLiteHelper.Table_Column_3_Mobile + " VARCHAR, " + SQLiteHelper.Table_Column_4_Password + " VARCHAR);");
-    }
 
-    public void InsertDataIntoSQLiteDatabase(){
 
-        if(EditTextEmptyHolder == true)
-        {
-            SQLiteDataBaseQueryHolder = "INSERT INTO "+SQLiteHelper.TABLE_NAME+" (name,email,mobile,password) VALUES('"+NameHolder+"', '"+EmailHolder+"', '"+MobileHolder+"','"+PasswordHolder+"');";
-            sqLiteDatabaseObj.execSQL(SQLiteDataBaseQueryHolder);
-            sqLiteDatabaseObj.close();
-            Toast.makeText(RegisterActivity.this,"Пользователь успешно зарегистрирован", Toast.LENGTH_LONG).show();
-            Intent in = new Intent(getApplicationContext(),LoginActivity.class);
-            startActivity(in);
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
-        else {
-            Toast.makeText(RegisterActivity.this,"Заполните все поля", Toast.LENGTH_LONG).show();
-        }
 
-    }
 
 
     public void EmptyEditTextAfterDataInsert(){
@@ -164,30 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    public void CheckingEmailAlreadyExistsOrNot(){
-        sqLiteDatabaseObj = sqLiteHelper.getWritableDatabase();
-        cursor = sqLiteDatabaseObj.query(SQLiteHelper.TABLE_NAME, null, " " + SQLiteHelper.Table_Column_2_Email + "=?", new String[]{EmailHolder}, null, null, null);
-        while (cursor.moveToNext()) {
-            if (cursor.isFirst()) {
-                cursor.moveToFirst();
-                F_Result = "Email Found";
-                cursor.close();
-            }
-        }
-        CheckFinalResult();
-    }
 
-    public void CheckFinalResult(){
-
-        if(F_Result.equalsIgnoreCase("Email Found"))
-        {
-            Toast.makeText(RegisterActivity.this,"Email уже существует",Toast.LENGTH_LONG).show();
-        }
-        else {
-            InsertDataIntoSQLiteDatabase();
-        }
-        F_Result = "Not_Found" ;
-    }
 
 
     public void createUser(View view) {

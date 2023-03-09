@@ -1,8 +1,7 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flag.cinema.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,8 +40,7 @@ public class ScreenSelection extends AppCompatActivity implements
     private TextView date_tv_data;
     private TextView priceText;
     private ImageView imageText;
-    SQLiteHelper database_helper;
-    SQLiteDatabase sqLiteDatabaseObj;
+
     private Button btn_date, delete, add;
     private FloatingActionButton play_button;
     private String date;
@@ -60,7 +59,7 @@ public class ScreenSelection extends AppCompatActivity implements
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        database_helper = new SQLiteHelper(this);
+
 
          intent = getIntent();
          extras = intent.getExtras();
@@ -71,6 +70,12 @@ public class ScreenSelection extends AppCompatActivity implements
         user = extras.getString("user");
         date = extras.getString("dateIntent");
         trailer = extras.getString("trailerIntent");
+        category=extras.getString("categoryIntent");
+        genre=extras.getString("genreIntent");
+        relase=extras.getString("relaseIntent");
+        runtime=extras.getString("runtimeIntent");
+        rating=extras.getString("ratingIntent");
+        description= extras.getString("descriptionIntent");
         movie_category = (TextView)findViewById(R.id.movie_category);
         descriptionText = findViewById(R.id.description);
         date_tv_data = (TextView)findViewById(R.id.date_tv_data);
@@ -96,6 +101,8 @@ public class ScreenSelection extends AppCompatActivity implements
         priceText.setText(extras.getInt("priceIntent")+" руб.");
         //play_button.setOnClickListener(this);
         btn_date.setOnClickListener(this);
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference mDbRef = mDatabase.getReference();
         String str = extras.getString("dateIntent");
         String[] arrOfStr = str.split(",", 100);
         List<String> timing= Arrays.asList(arrOfStr);
@@ -115,10 +122,9 @@ public class ScreenSelection extends AppCompatActivity implements
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-                        DatabaseReference mDbRef = mDatabase.getReference();
+
                         mDbRef.child("movies").child(String.valueOf(id_movie)).removeValue();
-                    Intent intent = new Intent(ScreenSelection.this,HomeActivity.class);
+                    Intent intent = new Intent(ScreenSelection.this, HomeActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
@@ -130,6 +136,15 @@ public class ScreenSelection extends AppCompatActivity implements
                     Intent intent = new Intent(ScreenSelection.this, MovieRedact.class);
                     Bundle extras = new Bundle();
                     extras.putInt("id_movie",id_movie);
+                    extras.putString("date",date);
+                    extras.putString("title",title);
+                    extras.putString("category",category);
+                    extras.putString("relase",relase);
+                    extras.putString("type",genre);
+                    extras.putString("length",runtime);
+                    extras.putString("rating",rating);
+                    extras.putString("trailer",trailer);
+                    extras.putString("description",description);
                     intent.putExtras(extras);
                     startActivity(intent);
 
@@ -160,19 +175,7 @@ public class ScreenSelection extends AppCompatActivity implements
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-//    public void prepareMovie(int m_id){
-//        SQLiteDatabase MyDB = database_helper.getReadableDatabase();
-//        Cursor cursor = MyDB.rawQuery("Select m_id, Movie_name, MovieImg_url1, Movie_type, MovieLength, Movie_rating, MovieTrailer, Movie_releaseDate, MovieCategory, Movie_date_time, Movie_description, Movie_price  FROM  MovieTable where m_id = ?", new String[]{String.valueOf(m_id)});
-//        if (cursor.moveToFirst()) {
-//            titleText.setText(cursor.getString(1));
-//            genreText.setText(cursor.getString(3));
-//            ratingText.setText(cursor.getString(5)+" | "+cursor.getString(4));
-//            date_tv_data.setText(cursor.getString(7));
-//            movie_category.setText(cursor.getString(8));
-//            descriptionText.setText(cursor.getString(10));
-//            priceText.setText(cursor.getString(11)+" руб.");
-//
-//        }}
+
 
 
     public boolean onOptionsItemSelected(MenuItem item){

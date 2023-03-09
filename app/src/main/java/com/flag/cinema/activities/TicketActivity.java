@@ -1,11 +1,9 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -24,6 +22,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flag.cinema.models.Movie;
+import com.flag.cinema.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,12 +56,12 @@ public class TicketActivity extends AppCompatActivity implements
     private Button btn_del;
     private FloatingActionButton play_button;
 
-    SQLiteHelper database_helper;
+
     SharedPreferences sharedpreferences;
-    SQLiteDatabase sqLiteDatabaseObj;
+
     Bundle extras;
     Intent intent;
-    Context c;
+
     public static final String mypreference = "mypref";
     public static final String Email = "emailKey";
     @Override
@@ -69,7 +69,7 @@ public class TicketActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d32f2f")));
-        database_helper = new SQLiteHelper(this);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -105,19 +105,7 @@ public class TicketActivity extends AppCompatActivity implements
 
         btn_del = (Button) findViewById(R.id.btn_del);
         play_button = findViewById(R.id.playButton);
-        //prepareMovie(m_id);
-//        number_Text.setText(id_book+"");
-//
-//        titleText.setText(title);
-//
-//        genreText.setText(movie.getType());
-//        movie_category.setText(movie.getCategory());
-//        date_tv_data.setText(movie.getRelaDate());
-//        seatText.setText(seat);
-//        ratingText.setText(movie.getRating()+" | "+movie.getLength());
-//        priceText.setText(movie.getPrice()+" руб.");
-//        timeText.setText(date);
-//        descriptionText.setText(movie.getDescription());
+
 
         mDbRef.child("movies").addValueEventListener(new ValueEventListener() {
             @Override
@@ -137,7 +125,7 @@ public class TicketActivity extends AppCompatActivity implements
                         timeText.setText(date);
                         descriptionText.setText(snapshotIter.child("description").getValue().toString());
 
-                    //Toast.makeText(TicketActivity.this,Integer.parseInt(snapshotIter.child("type").getValue().toString().toString()),Toast.LENGTH_LONG).show();
+
                     }
                 }
 
@@ -147,8 +135,7 @@ public class TicketActivity extends AppCompatActivity implements
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-            //recyclerViewAdapter = new RecyclerViewAdapter(movieList,getApplicationContext());
-//
+
 
 
 
@@ -182,34 +169,9 @@ else {
             }
         });}
     }
-    private void prepareMovie(int m_id){
-        SQLiteDatabase MyDB = database_helper.getReadableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select m_id, Movie_name, MovieImg_url1, Movie_type, MovieLength, Movie_rating, MovieTrailer, Movie_releaseDate, MovieCategory, Movie_date_time, Movie_description, Movie_price  FROM  MovieTable where m_id = ?", new String[]{String.valueOf(m_id)});
 
-        if (cursor.moveToFirst()) {
-                movie.setId(cursor.getInt(0));
-                movie.setName(cursor.getString(1));
-                movie.setImgUrl(cursor.getInt(2));
-                movie.setType(cursor.getString(3));
-                movie.setLength(cursor.getString(4));
-                movie.setRating(cursor.getString(5));
-                movie.setTrile(cursor.getString(6));
-                movie.setRelaDate(cursor.getString(7));
-                movie.setCategory(cursor.getString(8));
-                movie.setDate_time(cursor.getString(9));
-                movie.setDescription(cursor.getString(10));
-                movie.setPrice(cursor.getInt(11));
-
-        }}
     private void deleteBook(String id_book) {
 
-//        String delete_query = "DELETE FROM SeatsTable WHERE s_id=?";
-//        sqLiteDatabaseObj = database_helper.getWritableDatabase();
-//        SQLiteStatement statement = sqLiteDatabaseObj.compileStatement(delete_query);
-//        statement.clearBindings();
-//        statement.bindDouble(1, (double)id_book);
-//        statement.execute();
-//        sqLiteDatabaseObj.close();
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDbRef = mDatabase.getReference();
         mDbRef.child("bookings").child(id_book).removeValue();

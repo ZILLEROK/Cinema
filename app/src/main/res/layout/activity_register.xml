@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".activities.RegisterActivity"
     android:background="#fff">
 
     <RelativeLayout
@@ -21,7 +21,7 @@
             android:text="Регистрация"
             android:textSize="32sp"
             android:gravity="center"
-            android:textColor="#d32f2f"/>
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/nameET"
@@ -103,7 +103,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#d32f2f"
+            android:background="#000000"
             android:onClick="createUser"
             android:text="Регистрация"
             android:textColor="#fff"
@@ -118,7 +118,7 @@
             android:layout_below="@id/registerbtn"
             android:text="Есть аккаунт? Вход"
             android:gravity="center"
-            android:textColor="#d32f2f"
+            android:textColor="#000000"
             android:textSize="20sp"/>
 
     </RelativeLayout>

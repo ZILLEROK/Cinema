@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.os.Looper;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.flag.cinema.R;
 
 public class SplashScreen extends AppCompatActivity {
 

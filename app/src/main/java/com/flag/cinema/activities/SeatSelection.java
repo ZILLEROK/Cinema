@@ -1,10 +1,9 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +18,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flag.cinema.adapters.NumberedAdapter;
+import com.flag.cinema.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,8 +34,7 @@ public class SeatSelection extends AppCompatActivity {
     public static  String title,showDate,seatsList,seatsIndex;
     public static int id_movie, price;
 
-    SQLiteDatabase sqLiteDatabaseObj;
-    SQLiteHelper sqLiteHelper;
+
     Cursor cursor;
     String s="";
 
@@ -76,13 +76,7 @@ public class SeatSelection extends AppCompatActivity {
         NumberedAdapter.seats = new ArrayList<>();
 
        NumberedAdapter.bookedSeats.clear();
-//        sqLiteHelper = new SQLiteHelper(this);
-//        sqLiteDatabaseObj = sqLiteHelper.getWritableDatabase();
-//        cursor = sqLiteDatabaseObj.query(SQLiteHelper.SEATS_TABLE_NAME, null, " "  + SQLiteHelper.Seats_Table_Title_Name + " = ? AND "  + SQLiteHelper.Seats_Table_Show_Date + " = ? ", new String[]{SeatSelection.title,SeatSelection.showDate}, null, null, null);
-//        while (cursor.moveToNext()) {
-//            NumberedAdapter.bookedSeats.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.Seats_Table_Seat_Index)).trim());
-//        }
-//        cursor.close();
+
         mDbRef.child("bookings").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

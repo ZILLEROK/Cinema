@@ -1,8 +1,7 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +16,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flag.cinema.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,8 +26,7 @@ public class MovieRedact extends AppCompatActivity {
     Button btn_send;
     Bundle extras;
     Intent intent;
-    SQLiteHelper dbHelper;
-    SQLiteHelper database_helper;
+
 
     SQLiteDatabase sqLiteDatabaseObj;
     int m_id;
@@ -41,7 +40,9 @@ public class MovieRedact extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        dbHelper = new SQLiteHelper(this);
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference mDbRef = mDatabase.getReference();
+
         name =(EditText)findViewById(R.id.name);
         type =(EditText)findViewById(R.id.type);
         trailer =(EditText)findViewById(R.id.trailer);
@@ -57,9 +58,15 @@ public class MovieRedact extends AppCompatActivity {
         extras = intent.getExtras();
         m_id=extras.getInt("id_movie");
 
-        prepareAdminMovie(m_id);
-
-
+        name.setText(extras.getString("title"));
+        type.setText(extras.getString("type"));
+        category.setText(extras.getString("category"));
+        releaseDate.setText(extras.getString("relase"));
+        rating.setText(extras.getString("rating"));
+        length.setText(extras.getString("length"));
+        date.setText(extras.getString("date"));
+        description.setText(extras.getString("description"));
+        trailer.setText(extras.getString("trailer"));
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,20 +95,9 @@ public class MovieRedact extends AppCompatActivity {
                     mDbRef.child("movies").child(String.valueOf(m_id)).child("name").setValue(name.getText().toString());
                     mDbRef.child("movies").child(String.valueOf(m_id)).child("rating").setValue(rating.getText().toString());
                     mDbRef.child("movies").child(String.valueOf(m_id)).child("relaDate").setValue(releaseDate.getText().toString());
-                    mDbRef.child("movies").child(String.valueOf(m_id)).child("trile").setValue(trailer.getText().toString());
                     mDbRef.child("movies").child(String.valueOf(m_id)).child("type").setValue(type.getText().toString());
-//                    String query = "UPDATE MovieTable SET " +
-//                            "Movie_name='" + name.getText().toString() + "'," +
-//                            "Movie_type='" + type.getText().toString() + "'," +
-//                            "MovieTrailer='" + trailer.getText().toString() + "'," +
-//                            "Movie_date_time='" + date.getText().toString() + "'," +
-//                            "Movie_releaseDate='" + releaseDate.getText().toString() + "'," +
-//                            "MovieLength='" + length.getText().toString() + "'," +
-//                            "MovieCategory='" + category.getText().toString() + "'," +
-//                            "Movie_rating='" + rating.getText().toString() + "' " +
-//                            "WHERE m_id=" + m_id;
-//                    SQLiteDatabase db = dbHelper.getWritableDatabase();
-//                    db.execSQL(query);
+                    mDbRef.child("movies").child(String.valueOf(m_id)).child("description").setValue(description.getText().toString());
+                    mDbRef.child("movies").child(String.valueOf(m_id)).child("trile").setValue(trailer.getText().toString());
                     Intent intent = new Intent(MovieRedact.this, HomeActivity.class);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     startActivity(intent);
@@ -110,20 +106,6 @@ public class MovieRedact extends AppCompatActivity {
         });
 
     }
-        public void prepareAdminMovie(int m_id){
-            SQLiteDatabase MyDB = database_helper.getReadableDatabase();
-            Cursor cursor = MyDB.rawQuery("Select m_id, Movie_name, MovieImg_url1, Movie_type, MovieLength, Movie_rating, MovieTrailer, Movie_releaseDate, MovieCategory, Movie_date_time, Movie_description, Movie_price  FROM  MovieTable where m_id = ?", new String[]{String.valueOf(m_id)});
-            if (cursor.moveToFirst()) {
-                name.setText(cursor.getString(1));
-                type.setText(cursor.getString(3));
-                length.setText(cursor.getString(4));
-                rating.setText(cursor.getString(5));
-                releaseDate.setText(cursor.getString(7));
-                category.setText(cursor.getString(8));
-                date.setText(cursor.getString(9));
-
-            }}
-
 
 
     public boolean onOptionsItemSelected(MenuItem item){

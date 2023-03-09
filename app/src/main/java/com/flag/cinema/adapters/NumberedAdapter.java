@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.flag.cinema.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.models;
 
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flag.cinema.adapters.ClickListener;
+import com.flag.cinema.models.Movie;
+import com.flag.cinema.R;
+import com.flag.cinema.adapters.RecyclerViewAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,11 +45,11 @@ public class HomeActivity extends AppCompatActivity{
     public static  String relaseIntent ="relaseIntent";
     public static  String descriptionIntent ="descriptionIntent";
     public static  String priceIntent ="priceIntent";
-Context context;
+
     SharedPreferences sharedpreferences;
     public static final String mypreference = "mypref";
     public static final String Email = "emailKey";
-    SQLiteHelper database_helper;
+
     SQLiteDatabase sqLiteDatabaseObj;
 
     @Override
@@ -53,7 +57,7 @@ Context context;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d32f2f")));
-        database_helper = new SQLiteHelper(this);
+
         movieList = new ArrayList<>();
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDbRef = mDatabase.getReference();
@@ -68,12 +72,12 @@ Context context;
                     case R.id.navigation_home:
                         break;
                     case R.id.navigation_dashboard:
-                        Intent a = new Intent(HomeActivity.this,BookingsActivity.class);
+                        Intent a = new Intent(HomeActivity.this, BookingsActivity.class);
                         startActivity(a);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
                     case R.id.navigation_notifications:
-                        Intent b = new Intent(HomeActivity.this,ProfileActivity.class);
+                        Intent b = new Intent(HomeActivity.this, ProfileActivity.class);
                         startActivity(b);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
@@ -151,8 +155,7 @@ Context context;
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-            //recyclerViewAdapter = new RecyclerViewAdapter(movieList,getApplicationContext());
-//
+
 
 
 
@@ -160,63 +163,9 @@ Context context;
 
         });
 
-//        recyclerViewAdapter = new RecyclerViewAdapter(movieList,getApplicationContext());
-//        recyclerView.setAdapter(recyclerViewAdapter);
-//prepareMovie();
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//
-//        recyclerViewAdapter = new RecyclerViewAdapter(movieList);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerViewAdapter.setOnItemClickListener(new ClickListener<Movie>(){
-//            @Override
-//            public void onItemClick(Movie data) {
-//
-//                Intent intent = new Intent(HomeActivity.this, ScreenSelection.class);
-//                Bundle extras = new Bundle();
-//                extras.putInt(id_movie, data.getId());
-//                extras.putInt(imageIntent, data.getImgUrl());
-//                extras.putString(dateIntent,data.getDate_time());
-//                extras.putString(trailerIntent,data.getTrile());
-//                extras.putString("user", currentUser);
-//                intent.putExtras(extras);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//            }
-//        });
-//        recyclerView.setAdapter(recyclerViewAdapter);
-//
-//
-//
-//    }
-//    private void prepareMovie(){
-//
-//        String select_query= "SELECT m_id, Movie_name, MovieImg_url1, Movie_type, MovieLength, Movie_rating, MovieTrailer, Movie_releaseDate, MovieCategory, Movie_date_time, Movie_description, Movie_price   FROM  MovieTable";
-//        sqLiteDatabaseObj = database_helper.getWritableDatabase();
-//        Cursor cursor = sqLiteDatabaseObj.rawQuery(select_query,null);
-//        if (cursor.moveToFirst()) {
-//            do {
-//                Movie movie = new Movie("1","1","1","1","1","1","1","1","1",1,1,1);
-//                movie.setId(cursor.getInt(0));
-//                movie.setName(cursor.getString(1));
-//                //int i = cursor.getInt(2);
-//                movie.setImgUrl(cursor.getInt(2));
-//                movie.setType(cursor.getString(3));
-//                movie.setLength(cursor.getString(4));
-//                movie.setRating(cursor.getString(5));
-//                movie.setTrile(cursor.getString(6));
-//                movie.setRelaDate(cursor.getString(7));
-//                movie.setCategory(cursor.getString(8));
-//                movie.setDate_time(cursor.getString(9));
-//                movie.setDescription(cursor.getString(10));
-//                movie.setPrice(cursor.getInt(11));
-//                movieList.add(movie);
-//            }while (cursor.moveToNext());
-//        }
 
-        //return movieList;
     }
 
-        //return movieList;
 
     @Override
     public void onBackPressed() {

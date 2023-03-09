@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.models;
 
 public class Bookings {
     private String id;

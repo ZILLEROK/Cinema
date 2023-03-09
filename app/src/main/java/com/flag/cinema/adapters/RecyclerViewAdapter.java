@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flag.cinema.models.Movie;
+import com.flag.cinema.R;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
@@ -19,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ClickListener<Movie> clickListener;
     Context context;
 
-    RecyclerViewAdapter(List<Movie> movieList){
+    public RecyclerViewAdapter(List<Movie> movieList){
         this.movieList = movieList;
     }
 
@@ -75,7 +78,4 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardView = itemView.findViewById(R.id.carView);
         }
     }
-}
-interface ClickListener<T> {
-    void onItemClick(T data);
 }

@@ -1,10 +1,9 @@
-package com.flag.cinema;
+package com.flag.cinema.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.flag.cinema.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email,password;
     String EmailHolder, PasswordHolder;
     Boolean EditTextEmptyHolder;
-    SQLiteDatabase sqLiteDatabaseObj;
-    SQLiteHelper sqLiteHelper;
+
     Cursor cursor;
     String TempPassword = "NOT_FOUND" ;
     public static final String UserEmail = "";
@@ -44,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         email =(EditText)findViewById(R.id.emailET);
         password =(EditText)findViewById(R.id.passwordET);
 
-        sqLiteHelper = new SQLiteHelper(this);
 
         TextView register = (TextView)findViewById(R.id.register);
         Button loginbtn = (Button)findViewById(R.id.loginbtn);
@@ -53,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(),RegisterActivity.class);
+                Intent in = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(in);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
@@ -123,23 +121,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-//    public void createUser(View view) {
-//        if(EditTextEmptyHolder) {
-//        Intent mainIntent = new Intent(this, HomeActivity.class);
-//        mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()){
-//                    startActivity(mainIntent);
-//                }else{
-//                    Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
-//        else {
-//         Toast.makeText(LoginActivity.this,"Пожалуйста, введите почту и пароль.",Toast.LENGTH_LONG).show();
-//       }
-//    }
+
 
 }

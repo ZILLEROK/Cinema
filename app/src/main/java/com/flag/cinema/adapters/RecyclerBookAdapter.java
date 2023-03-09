@@ -1,4 +1,4 @@
-package com.flag.cinema;
+package com.flag.cinema.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.flag.cinema.models.Bookings;
+import com.flag.cinema.R;
+
 import java.util.List;
 
 public class RecyclerBookAdapter extends RecyclerView.Adapter<RecyclerBookAdapter.MyViewHolder>{
@@ -19,7 +22,7 @@ public class RecyclerBookAdapter extends RecyclerView.Adapter<RecyclerBookAdapte
     private ClickListener1<Bookings> clickListener1;
     Context context;
 
-    RecyclerBookAdapter(List<Bookings> bookList){
+    public RecyclerBookAdapter(List<Bookings> bookList){
         this.bookList = bookList;
     }
     @Override
@@ -78,7 +81,4 @@ public class RecyclerBookAdapter extends RecyclerView.Adapter<RecyclerBookAdapte
             cardView = itemView.findViewById(R.id.carView);
         }
     }
-}
-interface ClickListener1<T> {
-    void onItemClick(T data);
 }
